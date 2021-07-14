@@ -2,7 +2,7 @@
 #' 
 #' \code{normalise_rank} normalises a rank between a scale of 0 and 1.
 #'
-#' @param vec Vector of ranks to be normalised
+#' @param vec Vector of ranks to be normalised.
 #'
 #' @export
 #'
@@ -25,7 +25,7 @@ normalise_rank <-
 #' \code{standardise} standardises (i.e., normalises) a vector to mean = 0 & SD 
 #'   = 1.
 #'
-#' @param vec Vector to normalise
+#' @param vec Vector to normalise.
 #' 
 #' @export
 #' 

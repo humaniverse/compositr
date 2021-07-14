@@ -7,7 +7,7 @@
 normalise_rank(vec)
 }
 \arguments{
-\item{vec}{Vector of ranks to be normalised}
+\item{vec}{Vector of ranks to be normalised.}
 }
 \description{
 \code{normalise_rank} normalises a rank between a scale of 0 and 1.

@@ -7,7 +7,7 @@
 standardise(vec)
 }
 \arguments{
-\item{vec}{Vector to normalise}
+\item{vec}{Vector to normalise.}
 }
 \description{
 \code{standardise} standardises (i.e., normalises) a vector to mean = 0 & SD
