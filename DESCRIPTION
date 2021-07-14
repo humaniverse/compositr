@@ -8,7 +8,7 @@ Authors@R: c(
     )
 Description: A framework to create composite scores and indices, using a mixture
     of normalising, ranking, weighting and quantising.
-License: GPL (>= 3)
+License: GPL (>= 3) + file LICENSE
 URL: https://github.com/britishredcrosssociety/compositr
 BugReports: https://github.com/britishredcrosssociety/compositr/issues
 Encoding: UTF-8
