@@ -19,3 +19,19 @@ normalise_rank <-
 
     return(output)
   }
+
+#' Standardise
+#' 
+#' \code{standardise} standardises (i.e., normalises) a vector to mean = 0 & SD 
+#'   = 1.
+#'
+#' @param vec Vector to normalise
+#' 
+#' @export
+#' 
+#' @examples
+#' standardise(c(1:10))
+standardise <-
+  function(vec){
+    (vec - mean(vec)) / stats::sd(vec)
+  }
