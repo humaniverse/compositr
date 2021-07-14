@@ -1,15 +1,16 @@
 Package: compositr
-Title: What the Package Does (One Line, Title Case)
+Title: Create composite scores
 Version: 0.0.0.9000
-Authors@R: 
-    person(given = "First",
-           family = "Last",
-           role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+Authors@R: c(
+    person("Mike", "Page", email = "mpage@redcross.org.uk", role = "cre"),
+    person("Matt", "Thomas", email = "mattthomas@redcross.org.uk", role = "aut"),
+    person(family = "British Red Cross", role = "cph")
+    )
+Description: A framework to create composite scores and indices, using a mixture
+    of normalising, ranking, weighting and quantising.
+License: GPL (>= 3)
+URL: https://github.com/britishredcrosssociety/compositr
+BugReports: https://github.com/britishredcrosssociety/compositr/issues
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
