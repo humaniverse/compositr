@@ -3,4 +3,5 @@
 export(invert_rank)
 export(invert_this)
 export(normalise_rank)
+export(quantise)
 export(standardise)
