@@ -23,7 +23,7 @@ You can install the development version from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("britishredcrosssociety/geographr")
+devtools::install_github("britishredcrosssociety/compositr")
 ```
 
 ## Getting help
