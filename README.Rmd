@@ -31,13 +31,13 @@ You can install the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("britishredcrosssociety/compositr")
+devtools::install_github("humaniverse/compositr")
 ```
 
 ## Getting help
 
 If you encounter a clear bug, please file an issue with a minimal reproducible
-example on [GitHub](https://github.com/britishredcrosssociety/compositr/issues).
+example on [GitHub](https://github.com/humaniverse/compositr/issues).
 
 ---
 Please note that this project is released with a [Contributor Code of Conduct](https://www.contributor-covenant.org/version/2/0/code_of_conduct/).

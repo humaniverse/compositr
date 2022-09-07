@@ -23,14 +23,14 @@ You can install the development version from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("britishredcrosssociety/compositr")
+devtools::install_github("humaniverse/compositr")
 ```
 
 ## Getting help
 
 If you encounter a clear bug, please file an issue with a minimal
 reproducible example on
-[GitHub](https://github.com/britishredcrosssociety/compositr/issues).
+[GitHub](https://github.com/humaniverse/compositr/issues).
 
 ------------------------------------------------------------------------
 
