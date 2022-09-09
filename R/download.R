@@ -3,6 +3,13 @@
 #' @param url A URL for the request
 #' @param file_extension A character vector detailing the file extension (e.g.,
 #'         ".xlsx")
+#' 
+#' @export 
+#' 
+#' @examples
+#' \dontrun{
+#' download_file("www.example.com/example_file.csv", ".csv")
+#' }
 download_file <-
   function(url, file_extension) {
     stopifnot(
