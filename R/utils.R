@@ -13,6 +13,6 @@
 keep_na <- function(data) {
   data |>
     dplyr::anti_join(
-      dplyr::drop_na(data)
+      tidyr::drop_na(data)
     )
 }
