@@ -4,6 +4,9 @@
 #'
 #' @param vec The vector to quantise.
 #' @param num_quantiles The Number of quantiles, defaults to 10.
+#' @param style passed to \code{iclassInt::classIntervals}. One of "fixed",
+#' "sd", "equal", "pretty", "quantile", "kmeans", "hclust", "bclust", "fisher", 
+#' "jenks", "dpih", "headtails", or "maximum"
 #' @param invert Should the highest quantile represent the lowest input value?
 #' Defaults to false.
 #'
@@ -11,10 +14,11 @@
 #'
 #' @examples
 #' quantise(c(1:20))
-#' quantise(c(1:20), num_quantiles = 5, invert = TRUE)
+#' quantise(c(1:20), num_quantiles = 10, invert = TRUE)
 quantise <-
   function(vec,
-           num_quantiles = 10,
+           num_quantiles = 5,
+           style = "quantile",
            invert = FALSE) {
     if (length(unique(vec)) <= 1) {
       stop("The vector cannot be quantised as there is only one unique value.")
@@ -24,7 +28,7 @@ quantise <-
       classInt::classIntervals(
         vec,
         num_quantiles,
-        style = "quantile"
+        style = style
       )
 
     quantiles <-

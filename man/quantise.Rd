@@ -4,12 +4,16 @@
 \alias{quantise}
 \title{Quantise}
 \usage{
-quantise(vec, num_quantiles = 10, invert = FALSE)
+quantise(vec, num_quantiles = 5, style = "quantile", invert = FALSE)
 }
 \arguments{
 \item{vec}{The vector to quantise.}
 
 \item{num_quantiles}{The Number of quantiles, defaults to 10.}
+
+\item{style}{passed to \code{iclassInt::classIntervals}. One of "fixed",
+"sd", "equal", "pretty", "quantile", "kmeans", "hclust", "bclust", "fisher",
+"jenks", "dpih", "headtails", or "maximum"}
 
 \item{invert}{Should the highest quantile represent the lowest input value?
 Defaults to false.}
@@ -19,5 +23,5 @@ Defaults to false.}
 }
 \examples{
 quantise(c(1:20))
-quantise(c(1:20), num_quantiles = 5, invert = TRUE)
+quantise(c(1:20), num_quantiles = 10, invert = TRUE)
 }
