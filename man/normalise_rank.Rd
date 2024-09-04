@@ -4,10 +4,10 @@
 \alias{normalise_rank}
 \title{Normalise ranks}
 \usage{
-normalise_rank(vec)
+normalise_rank(x)
 }
 \arguments{
-\item{vec}{Vector of ranks to be normalised.}
+\item{x}{Vector of ranks to be normalised.}
 }
 \description{
 \code{normalise_rank} normalises a rank between a scale of 0 and 1.

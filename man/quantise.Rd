@@ -4,10 +4,10 @@
 \alias{quantise}
 \title{Quantise}
 \usage{
-quantise(vec, num_quantiles = 5, style = "quantile", invert = FALSE)
+quantise(x, num_quantiles = 5, style = "quantile", invert = FALSE)
 }
 \arguments{
-\item{vec}{The vector to quantise.}
+\item{x}{The vector to quantise.}
 
 \item{num_quantiles}{The Number of quantiles, defaults to 10.}
 

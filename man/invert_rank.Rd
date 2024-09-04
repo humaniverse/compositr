@@ -4,10 +4,10 @@
 \alias{invert_rank}
 \title{Invert rank}
 \usage{
-invert_rank(vec)
+invert_rank(x)
 }
 \arguments{
-\item{vec}{Vector to be inverse ranked.}
+\item{x}{Vector to be inverse ranked.}
 }
 \description{
 \code{invert_rank} returns the inverse rank of a vector (i.e., the

@@ -4,10 +4,10 @@
 \alias{invert_this}
 \title{Invert this}
 \usage{
-invert_this(vec)
+invert_this(x)
 }
 \arguments{
-\item{vec}{Vector to be inverted.}
+\item{x}{Vector to be inverted.}
 }
 \description{
 \code{invert_this} returns the inverse of a vector. For example, a decile of

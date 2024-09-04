@@ -4,10 +4,10 @@
 \alias{standardise}
 \title{Standardise}
 \usage{
-standardise(vec)
+standardise(x)
 }
 \arguments{
-\item{vec}{Vector to normalise.}
+\item{x}{Vector to normalise.}
 }
 \description{
 \code{standardise} standardises (i.e., normalises) a vector to mean = 0 & SD
