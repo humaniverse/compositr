@@ -20,7 +20,7 @@ quantise <- function(x,
     stop("The vector cannot be quantised as there is only one unique value.")
   }
 
-  quantile_breaks <- quantile(
+  quantile_breaks <- stats::quantile(
     x,
     probs = seq(0, 1, length.out = num_quantiles + 1), na.rm = TRUE
   )
