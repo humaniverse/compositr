@@ -54,5 +54,5 @@ standardise <-
 #' @export
 positional_normalisation <-
   function(x) {
-    ((x - median(x)) / sqrt(sum((x - median(x))^2)))
+    ((x - stats::median(x)) / sqrt(sum((x - median(x))^2)))
   }
