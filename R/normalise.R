@@ -1,14 +1,15 @@
-#' Normalise ranks
+#' Normalise ranks between 0 and 1
 #'
-#' \code{normalise_rank} normalises a rank between a scale of 0 and 1.
+#' \code{normalise_ranks_01} scales (i.e., normalises) a rank between a scale of
+#' 0 and 1.
 #'
-#' @param x Vector of ranks to be normalised.
+#' @param x Vector of ranks to be scaled.
 #'
 #' @export
 #'
 #' @examples
-#' normalise_rank(c(1:3))
-normalise_rank <-
+#' normalise_ranks_01(c(1:3))
+normalise_ranks_01 <-
   function(x) {
     output <- (x - 1) / (length(x) - 1)
 
@@ -24,40 +25,45 @@ normalise_rank <-
     return(output)
   }
 
-#' Standardise
+#' Mean normalisation
 #'
-#' \code{standardise} standardises (i.e., normalises) a vector to mean = 0 & SD
-#'   = 1.
+#' \code{normalise_mean} standardises (i.e., normalises) a vector to mean = 0 &
+#' SD = 1.
 #'
-#' @param x Vector to normalise.
+#' @param x Vector to standardise.
+#' @param remove_na Boolean indicating whether NA values should be removed.
+#'   Defaults to TRUE.
 #'
 #' @export
 #'
 #' @examples
-#' standardise(c(1:10))
-standardise <-
-  function(x) {
-    (x - mean(x)) / stats::sd(x)
+#' normalise_mean(c(1:10))
+normalise_mean <-
+  function(x, remove_na = TRUE) {
+    (x - mean(x, na.rm = remove_na)) / stats::sd(x, na.rm = remove_na)
   }
 
-#' Positional Normalisation
+#' Median normalisation
 #'
-#' This function performs positional normalisation on a numeric vector. It
+#' This function performs median normalisation on a numeric vector. It
 #' subtracts the median from each element in the vector and then divides the
 #' resulting values by the square root of the sum of their squared deviations
 #' from the median.
 #'
 #' @param x A numeric vector that will be normalised.
+#' @param remove_na Boolean indicating whether NA values should be removed.
+#'   Defaults to TRUE.
 #'
 #' @return A numeric vector of the same length as `x` where each element has
 #'   been positionally normalised.
 #'
 #' @examples
-#' positional_normalisation(c(1, 2, 3, 4, 5))
-#' positional_normalisation(c(10, 20, 30, 40, 50))
+#' normalise_median(c(1, 2, 3, 4, 5))
+#' normalise_median(c(10, 20, 30, 40, 50))
 #'
 #' @export
-positional_normalisation <-
-  function(x) {
-    ((x - stats::median(x)) / sqrt(sum((x - stats::median(x))^2)))
+normalise_median <-
+  function(x, remove_na = TRUE) {
+    ((x - stats::median(x, na.rm = remove_na)) /
+      sqrt(sum((x - stats::median(x, na.rm = remove_na))^2, na.rm = remove_na)))
   }
