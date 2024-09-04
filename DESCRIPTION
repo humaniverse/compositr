@@ -19,8 +19,6 @@ RoxygenNote: 7.3.2
 Imports:
     stats,
     dplyr,
-    tibble,
-    classInt,
     httr2,
     tidyr
 Suggests: 

@@ -4,9 +4,6 @@
 #'
 #' @param x The vector to quantise.
 #' @param num_quantiles The Number of quantiles, defaults to 10.
-#' @param style passed to \code{iclassInt::classIntervals}. One of "fixed",
-#'   "sd", "equal", "pretty", "quantile", "kmeans", "hclust", "bclust",
-#'   "fisher", "jenks", "dpih", "headtails", or "maximum"
 #' @param invert Should the highest quantile represent the lowest input value?
 #'   Defaults to false.
 #'
@@ -17,53 +14,29 @@
 #' quantise(c(1:20))
 #' quantise(c(1:20), num_quantiles = 10, invert = TRUE)
 quantise <- function(x,
-                     num_quantiles = 5,
-                     style = "quantile",
+                     num_quantiles = 10,
                      invert = FALSE) {
   if (length(unique(x)) <= 1) {
     stop("The vector cannot be quantised as there is only one unique value.")
   }
 
-  quantile_breaks <-
-    classInt::classIntervals(
-      x,
-      num_quantiles,
-      style = style
-    )
+  quantile_breaks <- quantile(
+    x,
+    probs = seq(0, 1, length.out = num_quantiles + 1), na.rm = TRUE
+  )
 
-  quantiles <-
-    as.integer(
-      cut(
-        x,
-        breaks = quantile_breaks$brks,
-        include.lowest = TRUE
-      )
-    )
+  quantiles <- as.integer(
+    cut(x, breaks = quantile_breaks, include.lowest = TRUE)
+  )
 
   if (invert) {
     max_quant <- max(quantiles, na.rm = TRUE)
     quantiles <- (max_quant + 1) - quantiles
   }
 
-  if (
-    !(
-      tibble::tibble(quantiles = quantiles) |>
-        dplyr::count(quantiles) |>
-        dplyr::mutate(
-          equal_bins = dplyr::if_else(
-            n >= (length(x) / num_quantiles) - 1 &
-              n <= (length(x) / num_quantiles) + 1,
-            TRUE,
-            FALSE
-          )
-        ) |>
-        dplyr::pull(equal_bins) |>
-        all()
-    )
-
-  ) {
-    warning("Quantiles are not in equal bins.")
-  }
+  quantile_counts <- table(quantiles)
+  equal_bins <- length(unique(quantile_counts)) == 1
+  if (!equal_bins) warning("Quantiles are not in equal bins.")
 
   return(quantiles)
 }
