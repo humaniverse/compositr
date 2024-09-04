@@ -10,13 +10,14 @@ positional_normalisation(x)
 \item{x}{A numeric vector that will be normalised.}
 }
 \value{
-A numeric vector of the same length as \code{x} where each element has been
-positionally normalised.
+A numeric vector of the same length as \code{x} where each element has
+been positionally normalised.
 }
 \description{
-This function performs positional normalisation on a numeric vector.
-It subtracts the median from each element in the vector and then divides
-the resulting values by the square root of the sum of their squared deviations from the median.
+This function performs positional normalisation on a numeric vector. It
+subtracts the median from each element in the vector and then divides the
+resulting values by the square root of the sum of their squared deviations
+from the median.
 }
 \examples{
 positional_normalisation(c(1, 2, 3, 4, 5))

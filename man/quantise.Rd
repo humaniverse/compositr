@@ -12,8 +12,8 @@ quantise(vec, num_quantiles = 5, style = "quantile", invert = FALSE)
 \item{num_quantiles}{The Number of quantiles, defaults to 10.}
 
 \item{style}{passed to \code{iclassInt::classIntervals}. One of "fixed",
-"sd", "equal", "pretty", "quantile", "kmeans", "hclust", "bclust", "fisher",
-"jenks", "dpih", "headtails", or "maximum"}
+"sd", "equal", "pretty", "quantile", "kmeans", "hclust", "bclust",
+"fisher", "jenks", "dpih", "headtails", or "maximum"}
 
 \item{invert}{Should the highest quantile represent the lowest input value?
 Defaults to false.}

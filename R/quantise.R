@@ -5,10 +5,10 @@
 #' @param vec The vector to quantise.
 #' @param num_quantiles The Number of quantiles, defaults to 10.
 #' @param style passed to \code{iclassInt::classIntervals}. One of "fixed",
-#' "sd", "equal", "pretty", "quantile", "kmeans", "hclust", "bclust", "fisher", 
-#' "jenks", "dpih", "headtails", or "maximum"
+#'   "sd", "equal", "pretty", "quantile", "kmeans", "hclust", "bclust",
+#'   "fisher", "jenks", "dpih", "headtails", or "maximum"
 #' @param invert Should the highest quantile represent the lowest input value?
-#' Defaults to false.
+#'   Defaults to false.
 #'
 #' @export
 #'
@@ -48,17 +48,17 @@ quantise <-
     if (
       !(
         tibble::tibble(quantiles = quantiles) |>
-        dplyr::count(quantiles) |>
-        dplyr::mutate(
-          equal_bins = dplyr::if_else(
-            n >= (length(vec) / num_quantiles) - 1 &
-              n <= (length(vec) / num_quantiles) + 1,
-            TRUE,
-            FALSE
-          )
-        ) |>
-        dplyr::pull(equal_bins) |>
-        all()
+          dplyr::count(quantiles) |>
+          dplyr::mutate(
+            equal_bins = dplyr::if_else(
+              n >= (length(vec) / num_quantiles) - 1 &
+                n <= (length(vec) / num_quantiles) + 1,
+              TRUE,
+              FALSE
+            )
+          ) |>
+          dplyr::pull(equal_bins) |>
+          all()
       )
 
     ) {
