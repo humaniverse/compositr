@@ -13,7 +13,12 @@ normalise_rank <-
     output <- (x - 1) / (length(x) - 1)
 
     if (max(output) > 1 | min(output) < 0) {
-      stop("The vector could not be normalised between 0 and 1. \n  Are you sure you provided a ranked vector?")
+      stop(
+        paste0(
+          "'x' could not be normalised between 0 and 1. \n  ",
+          "Please ensure you provided a ranked vector."
+        )
+      )
     }
 
     return(output)
