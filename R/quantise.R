@@ -10,6 +10,7 @@
 #' @param invert Should the highest quantile represent the lowest input value?
 #'   Defaults to false.
 #'
+#' @autoglobal
 #' @export
 #'
 #' @examples
