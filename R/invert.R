@@ -9,10 +9,9 @@
 #'
 #' @examples
 #' invert_rank(c(1:3))
-invert_rank <-
-  function(x) {
-    (length(x) + 1) - rank(x, na.last = FALSE)
-  }
+invert_rank <- function(x) {
+  (length(x) + 1) - rank(x, na.last = FALSE)
+}
 
 #' Invert this
 #'
@@ -25,7 +24,6 @@ invert_rank <-
 #'
 #' @examples
 #' invert_this(c(1:3))
-invert_this <-
-  function(x) {
-    (max(x, na.rm = TRUE) + 1) - x
-  }
+invert_this <- function(x) {
+  (max(x, na.rm = TRUE) + 1) - x
+}
