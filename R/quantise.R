@@ -3,7 +3,7 @@
 #' \code{quantise} quantises a vector.
 #'
 #' @param x The vector to quantise.
-#' @param num_quantiles The Number of quantiles, defaults to 10.
+#' @param n The Number of quantiles, defaults to 10.
 #' @param invert Should the highest quantile represent the lowest input value?
 #'   Defaults to false.
 #'
@@ -13,9 +13,9 @@
 #'
 #' @examples
 #' quantise(c(1:20))
-#' quantise(c(1:20), num_quantiles = 10, invert = TRUE)
+#' quantise(c(1:20), n = 10, invert = TRUE)
 quantise <- function(x,
-                     num_quantiles = 10,
+                     n = 10,
                      invert = FALSE) {
   if (length(unique(x)) <= 1) {
     stop("The vector cannot be quantised as there is only one unique value.")
@@ -23,7 +23,7 @@ quantise <- function(x,
 
   quantile_breaks <- stats::quantile(
     x,
-    probs = seq(0, 1, length.out = num_quantiles + 1), na.rm = TRUE
+    probs = seq(0, 1, length.out = n + 1), na.rm = TRUE
   )
 
   quantiles <- as.integer(
