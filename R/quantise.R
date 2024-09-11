@@ -8,7 +8,8 @@
 #'   Defaults to false.
 #'
 #' @autoglobal
-#' @export
+#' @keywords internal
+#' @noRd
 #'
 #' @examples
 #' quantise(c(1:20))
