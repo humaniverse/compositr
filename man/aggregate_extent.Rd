@@ -7,17 +7,17 @@
 aggregate_extent(data, x, higher_id, lower_pop, weight_high_scores = TRUE)
 }
 \arguments{
-\item{data}{Dataframe containing a variable to be aggregated, lower level
+\item{data}{A dataframe containing a variable to be aggregated, lower level
 geography population estimates, and a higher level geographical grouping
 variable.}
 
-\item{x}{Name of the variable in the data frame containing the variable to be
+\item{x}{Name of the variable in the dataframe containing the variable to be
 aggregated (e.g., score) for the lower level geography.}
 
-\item{higher_id}{Name of the variable in the data frame containing the higher
+\item{higher_id}{Name of the variable in the dataframe containing the higher
 level geography names/codes.}
 
-\item{lower_pop}{Name of the variable in the data frame containing the
+\item{lower_pop}{Name of the variable in the dataframe containing the
 population estimates of the lower level geography.}
 
 \item{weight_high_scores}{If TRUE higher scores are weighted, else lower

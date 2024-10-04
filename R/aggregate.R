@@ -88,15 +88,7 @@ aggregate_extent <- function(data,
 #'
 #' Aggregate population-weighted scores within small areas.
 #'
-#' @param data Data frame containing a variable to be aggregated, lower level
-#'   geography population estimates, and a higher level geographical grouping
-#'   variable.
-#' @param x Name of the variable in the data frame containing the variable to
-#'   be aggregated (e.g. rank) for the lower level geography.
-#' @param higher_id Name of the variable in the data frame containing the higher
-#'   level geography names/codes.
-#' @param lower_pop Name of the variable in the dataframe containing the
-#'   population estimates of the lower level geography.
+#' @inheritParams aggregate_extent
 #'
 #' @export
 #' @autoglobal
@@ -122,12 +114,11 @@ calculate_pop_weighted_score <- function(data, x, higher_id, lower_pop) {
 #' Calculate proportion of small areas in the higher-level geography that are
 #' within the 10% most deprived areas in the nation.
 #'
+#' @inheritParams aggregate_extent
 #' @param data A dataframe containing a variable to be aggregated and a higher
 #'   level geographical grouping variable.
 #' @param x Name of the variable in the dataframe for which you want to
 #'   calculate proportions. It must have only two possible values.
-#' @param higher_id Name of the variable in the data frame containing the higher
-#'  level geography names/codes.
 #'
 #' @examples
 #' \dontrun{
