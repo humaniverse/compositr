@@ -84,6 +84,39 @@ aggregate_extent <- function(data,
   return(data)
 }
 
+#' Population-weighted scores
+#'
+#' Aggregate population-weighted scores within small areas.
+#'
+#' @param data Data frame containing a variable to be aggregated, lower level
+#'   geography population estimates, and a higher level geographical grouping
+#'   variable.
+#' @param x Name of the variable in the data frame containing the variable to
+#'   be aggregated (e.g. rank) for the lower level geography.
+#' @param higher_id Name of the variable in the data frame containing the higher
+#'   level geography names/codes.
+#' @param lower_pop Name of the variable in the dataframe containing the
+#'   population estimates of the lower level geography.
+#'
+#' @export
+#' @autoglobal
+#'
+#' @examples
+#' \dontrun{
+#' calculate_pop_weighted_score(
+#'   example_aggregate_data,
+#'   score,
+#'   higher_geography_code,
+#'   lower_geography_population
+#' )
+#' }
+calculate_pop_weighted_score <- function(data, x, higher_id, lower_pop) {
+  data |>
+    dplyr::mutate(score = {{ x }} * {{ lower_pop }}) |>
+    dplyr::group_by({{ higher_id }}) |>
+    dplyr::summarise(score = sum(score) / sum({{ lower_pop }}))
+}
+
 #' Calculate the 'proportion' scores when aggregating up small areas
 #'
 #' Calculate proportion of small areas in the higher-level geography that are
@@ -124,29 +157,3 @@ aggregate_proportion <- function(data, x, higher_id) {
     dplyr::mutate(!!prop_column_2 := .data[[x_values[2]]] / (.data[[x_values[1]]] + .data[[x_values[2]]])) |>
     dplyr::select({{ higher_id }}, .data[[prop_column_1]], .data[[prop_column_2]])
 }
-
-# #' Population-weighted scores
-# #'
-# #' Calculate population-weighted scores within small areas.
-# #'
-# #' @param data Data frame containing a variable to be aggregated, lower level
-# #'   geography population estimates, and a higher level geographical grouping
-# #'   variable.
-# #' @param var Name of the variable in the data frame containing the variable to
-# #'   be aggregated (e.g. rank) for the lower level geography.
-# #' @param higher_level_geography Name of the variable in the data frame
-# #'   containing the higher level geography names/codes.
-# #' @param population Name of the variable in the data frame containing
-# #'   the population estimates of the lower level geography.
-# #'
-# #' @export
-# calculate_pop_weighted_score <-
-#   function(data,
-#            var,
-#            higher_level_geography,
-#            population) {
-#     data |>
-#       dplyr::mutate(score = {{ var }} * {{ population }}) |>
-#       dplyr::group_by({{ higher_level_geography }}) |>
-#       dplyr::summarise(score = sum(score) / sum({{ population }}))
-#   }
