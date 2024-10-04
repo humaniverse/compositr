@@ -21,14 +21,14 @@
 #' where high scores equals high vulnerability, the outputted data set will hold
 #' this relationship true.
 #'
-#' @param data Dataframe containing a variable to be aggregated, lower level
+#' @param data A dataframe containing a variable to be aggregated, lower level
 #'   geography population estimates, and a higher level geographical grouping
 #'   variable.
-#' @param x Name of the variable in the data frame containing the variable to be
+#' @param x Name of the variable in the dataframe containing the variable to be
 #'   aggregated (e.g., score) for the lower level geography.
-#' @param higher_id Name of the variable in the data frame containing the higher
+#' @param higher_id Name of the variable in the dataframe containing the higher
 #'  level geography names/codes.
-#' @param lower_pop Name of the variable in the data frame containing the
+#' @param lower_pop Name of the variable in the dataframe containing the
 #'   population estimates of the lower level geography.
 #' @param weight_high_scores If TRUE higher scores are weighted, else lower
 #'   scores are weighted. For indicators like 'Alchol Misuse' and 'Ambulance
@@ -84,6 +84,47 @@ aggregate_extent <- function(data,
   return(data)
 }
 
+#' Calculate the 'proportion' scores when aggregating up small areas
+#'
+#' Calculate proportion of small areas in the higher-level geography that are
+#' within the 10% most deprived areas in the nation.
+#'
+#' @param data A dataframe containing a variable to be aggregated and a higher
+#'   level geographical grouping variable.
+#' @param x Name of the variable in the dataframe for which you want to
+#'   calculate proportions. It must have only two possible values.
+#' @param higher_id Name of the variable in the data frame containing the higher
+#'  level geography names/codes.
+#'
+#' @examples
+#' \dontrun{
+#' aggregate_proportion()
+#' }
+#'
+#' @export
+aggregate_proportion <- function(data, x, higher_id) {
+  x_values <- unique(data[[rlang::ensym(x)]])
+
+  if (length(x_values) != 2) {
+    stop("data$var must contain two possible values")
+  }
+
+  prop_column_1 <- paste0("proportion_", x_values[1])
+  prop_column_2 <- paste0("proportion_", x_values[2])
+
+  data |>
+    dplyr::group_by({{ higher_id }}, {{ x }}) |>
+    dplyr::summarise(count = dplyr::n(), .groups = "drop") |>
+    tidyr::pivot_wider(
+      names_from = {{ x }},
+      values_from = count,
+      values_fill = 0
+    ) |>
+    dplyr::mutate(!!prop_column_1 := .data[[x_values[1]]] / (.data[[x_values[1]]] + .data[[x_values[2]]])) |>
+    dplyr::mutate(!!prop_column_2 := .data[[x_values[2]]] / (.data[[x_values[1]]] + .data[[x_values[2]]])) |>
+    dplyr::select({{ higher_id }}, .data[[prop_column_1]], .data[[prop_column_2]])
+}
+
 # #' Population-weighted scores
 # #'
 # #' Calculate population-weighted scores within small areas.
@@ -108,53 +149,4 @@ aggregate_extent <- function(data,
 #       dplyr::mutate(score = {{ var }} * {{ population }}) |>
 #       dplyr::group_by({{ higher_level_geography }}) |>
 #       dplyr::summarise(score = sum(score) / sum({{ population }}))
-#   }
-
-# #' Calculate the 'proportion' scores when aggregating up small areas
-# #'
-# #' Calculate proportion of small areas in the higher-level geography that are
-# #' within the 10% most deprived areas in the nation.
-# #'
-# #' @param data Data frame containing a variable to be aggregated and a higher
-# #'   level geographical grouping variable.
-# #' @param var Name of the variable in the data frame for which you want to
-# #'   calculate proportions. It must have only two possible values.
-# #' @param higher_level_geography Name of the variable in the data frame
-# #'   containing the higher level geography names/codes.
-# #'
-# #' @examples
-# #' \dontrun{
-# #' calculate_proportion(IMD::imd_england_lsoa, IMD_decile, msoa_code, n_people)
-# #' }
-# #'
-# #' @importFrom rlang .data
-# #' @importFrom rlang :=
-# #' @export
-# aggregate_proportion <-
-#   function(data,
-#            var,
-#            higher_level_geography) {
-#     # Get the unique values of `var`...
-#     var_values <-
-#       data |>
-#       dplyr::distinct({{ var }}) |>
-#       dplyr::pull({{ var }})
-
-#     # ... make sure `var` only contains two possible values
-#     if (length(var_values) != 2) {
-#       stop("data$var must contain two possible values")
-#     }
-
-#     # ... and use these unique values to make new `proportion` columns
-#     prop_column_1 <- paste0("proportion_", var_values[1])
-#     prop_column_2 <- paste0("proportion_", var_values[2])
-
-#     # Count the number of each value of `var` in each `higher_level_geography`
-#     data |>
-#       janitor::tabyl({{ higher_level_geography }}, {{ var }}) |>
-#       # Calculate proportions
-#       dplyr::mutate(!!prop_column_1 := .data[[var_values[1]]] / (.data[[var_values[1]]] + .data[[var_values[2]]])) |>
-#       dplyr::mutate(!!prop_column_2 := .data[[var_values[2]]] / (.data[[var_values[1]]] + .data[[var_values[2]]])) |>
-#       dplyr::select({{ higher_level_geography }}, .data[[prop_column_1]], .data[[prop_column_2]]) |>
-#       tibble::as_tibble()
 #   }
