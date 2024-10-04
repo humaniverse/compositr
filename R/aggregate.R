@@ -95,14 +95,14 @@ aggregate_extent <- function(data,
 #'
 #' @examples
 #' \dontrun{
-#' calculate_pop_weighted_score(
+#' aggregate_pop_weighted_score(
 #'   example_aggregate_data,
 #'   score,
 #'   higher_geography_code,
 #'   lower_geography_population
 #' )
 #' }
-calculate_pop_weighted_score <- function(data, x, higher_id, lower_pop) {
+aggregate_pop_weighted_score <- function(data, x, higher_id, lower_pop) {
   data |>
     dplyr::mutate(score = {{ x }} * {{ lower_pop }}) |>
     dplyr::group_by({{ higher_id }}) |>
