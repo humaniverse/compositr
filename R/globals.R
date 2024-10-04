@@ -4,5 +4,8 @@ utils::globalVariables(c(
   "percentile", # <aggregate_extent>
   "extent", # <aggregate_extent>
   "score", # <aggregate_pop_weighted_score>
+  "count", # <aggregate_proportion>
+  ":=", # <aggregate_proportion>
+  ".data", # <aggregate_proportion>
   NULL
 ))

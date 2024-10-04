@@ -24,5 +24,4 @@ within the 10\% most deprived areas in the nation.
 \dontrun{
 aggregate_proportion()
 }
-
 }

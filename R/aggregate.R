@@ -120,12 +120,13 @@ aggregate_pop_weighted_score <- function(data, x, higher_id, lower_pop) {
 #' @param x Name of the variable in the dataframe for which you want to
 #'   calculate proportions. It must have only two possible values.
 #'
+#' @export
+#' @autoglobal
+#'
 #' @examples
 #' \dontrun{
 #' aggregate_proportion()
 #' }
-#'
-#' @export
 aggregate_proportion <- function(data, x, higher_id) {
   x_values <- unique(data[[rlang::ensym(x)]])
 
