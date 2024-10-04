@@ -18,7 +18,8 @@ Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
 RoxygenNote: 7.3.2
 Imports:
     dplyr,
-    stats
+    stats,
+    tidyr
 Suggests: 
     roxyglobals,
     tibble
