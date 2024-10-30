@@ -10,7 +10,7 @@
 #' @examples
 #' invert_rank(c(1:3))
 invert_rank <- function(x) {
-  (length(x) + 1) - rank(x, na.last = FALSE)
+  (length(x) + 1) - rank(x, na.last = "keep")
 }
 
 #' Invert this
