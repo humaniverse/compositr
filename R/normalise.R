@@ -9,21 +9,24 @@
 #'
 #' @examples
 #' normalise_ranks_01(c(1:3))
-normalise_ranks_01 <-
-  function(x) {
-    output <- (x - 1) / (length(x) - 1)
-
-    if (max(output) > 1 | min(output) < 0) {
-      stop(
-        paste0(
-          "'x' could not be normalised between 0 and 1. \n  ",
-          "Please ensure you provided a ranked vector."
-        )
-      )
-    }
-
-    return(output)
+normalise_ranks_01 <- function(x) {
+  if (all(rank(x) != x)) {
+    stop("Please supply ranked data")
   }
+
+  output <- (x - 1) / (length(x) - 1)
+
+  if (max(output) > 1 | min(output) < 0) {
+    stop(
+      paste0(
+        "'x' could not be normalised between 0 and 1. \n  ",
+        "Please ensure you provided a ranked vector."
+      )
+    )
+  }
+
+  return(output)
+}
 
 #' Mean normalisation
 #'
